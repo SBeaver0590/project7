@@ -1,4 +1,4 @@
-
+// Import the search, nav, gallery from the .jsx files
 import './App.css';
 import Search from './Components/Search';
 import Nav from './Components/Nav';
