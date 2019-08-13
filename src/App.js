@@ -3,9 +3,10 @@ import './App.css';
 import Search from './Components/Search';
 import Nav from './Components/Nav';
 import Gallery from './Components/Gallery';
-
+import apiKey from './config.js';
 
 import React, { Component } from 'react';
+// let test= apiKey;
 
 class App extends Component {
   render() {
@@ -18,5 +19,7 @@ class App extends Component {
     );
   }
 }
+
+
 
 export default App;
