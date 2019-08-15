@@ -1,16 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 
 const NotFound = props => {
     return (
-        <div>
-            
-        </div>
+        <li className="not-found">
+           <i className="material-icons icon-photo"></i>
+           <h3>So sorry, no images found</h3>
+        </li>
     );
 };
 
-NotFound.propTypes = {
-    
-};
 
 export default NotFound;

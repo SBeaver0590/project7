@@ -1,31 +1,48 @@
 import React, { Component } from 'react';
+import Picture from './Picture';
 
 class Gallery extends Component {
+    
+    constructor(props) {
+        super(props);
+    
+        const Picture = [];
+    
+        for (let i = 0; i < 10; i++) {
+            picture.push({
+                name: chance.first(),
+                country: chance.country({ full: true })
+            });
+        }
+    
+        this.state = { picture };
+    }
+    
     render() {
+        let pictures = [
+            'https://farm5.staticflickr.com/4334/37032996241_4c16a9b530.jpg',
+            "https://farm5.staticflickr.com/4342/36338751244_316b6ee54b.jpg",
+            "https://farm5.staticflickr.com/4343/37175099045_0d3a249629.jpg",
+            "https://farm5.staticflickr.com/4425/36337012384_ba3365621e.jpg"
+        ];
         return (
-            <div class="photo-container">
-                <h2>Results</h2>
+            <div className="photo-container">
+                <h2>{this.props.searchText}</h2>
                 <ul>
-                    <li>
-                        <img src="https://farm5.staticflickr.com/4334/37032996241_4c16a9b530.jpg" alt="" />
-                    </li>
-                    <li>
-                        <img src="https://farm5.staticflickr.com/4342/36338751244_316b6ee54b.jpg" alt="" />
-                    </li>
-                    <li>
-                        <img src="https://farm5.staticflickr.com/4343/37175099045_0d3a249629.jpg" alt="" />
-                    </li>
-                    <li>
-                        <img src="https://farm5.staticflickr.com/4425/36337012384_ba3365621e.jpg" alt="" />
-                    </li>
-                    {/* Image Not Found */}
-                    <li class="not-found">
-                        <h3>No Results Found</h3>
-                        <p>You search did not return any results. Please try again.</p>
-                    </li>
-                </ul>
+                    <Picture url={photoURL}/>
+                    <Picture url={photoURL}/>
+                    <Picture url={photoURL}/>
+                    <Picture url={photoURL}/>
+                    <Picture url={photoURL}/>
+                    <Picture url={photoURL}/>
+                    <Picture url={photoURL}/>
+                    <Picture url={photoURL}/>
+                    <Picture url={photoURL}/>
+                    
+                </ul> 
             </div>
         );
+
     }
 }
 
