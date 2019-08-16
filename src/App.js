@@ -5,7 +5,7 @@ import Search from './Components/Search';
 import Nav from './Components/Nav';
 import Gallery from './Components/Gallery';
 // import GalleryList from './Components/GalleryList';
-import apiKey from './config';
+import apiKey from './Components/config';
 import axios from 'axios'
 import React, { Component } from 'react';
 import NotFound from './Components/NotFound';
@@ -22,9 +22,9 @@ export default class App extends Component {
   }
 
   // Update state with data response from the server, use data from The Flickr API Key, and catch any errors.
-  componentDidMount() {
-    this.performSearch("");
-  }
+  // componentDidMount() {
+  //   this.performSearch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=statues&per_page=24&format=json&nojsoncallback=1`);
+  // }
 
   performSearch = (query) => {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${this.state.searchTerm}&per_page=24&format=json&nojsoncallback=1`)
