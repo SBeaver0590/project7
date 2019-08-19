@@ -6,17 +6,17 @@ export default class Search extends Component {
         searchText: ''
     }
 
-    onSearchChange = e => { //In this event target(capture) the user's input.
-        this.setState({ searchText: e.target.value });
-    }
+    // onSearchChange = e => { //In this event target(capture) the user's input.
+    //     this.setState(prevState => ({ searchText: e.target.value }));
+    // }
 
     handleSubmit = e => {   //Handle the User's input and perform the search
         e.preventDefault();
-        let query = this.query.value;
-        this.props.onSearchChange(this.query.value);
-        let path = `/performSearch/${query}`;
-        this.props.history.push(path);
-        this.props.onSearchChange(this.state.searchText, true);
+        // let query = this.query.value;
+        this.props.onSearch(this.query.value);
+        // let path = `/performSearch/${query}`;
+        // this.props.history.push(path);
+        this.props.onSearch(this.state.searchText, true);
 
         e.currentTarget.reset();
     }

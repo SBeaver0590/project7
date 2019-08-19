@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom'
 export default class Nav extends Component {
     render() {
         return (
-                <nav class="main-nav">
+                <nav className="main-nav">
                     <ul>
                         <li><NavLink to='/performSearch/Apples'>Apples</NavLink></li>
                         <li><NavLink to='/performSearch/Bananas'>Bananas</NavLink></li>

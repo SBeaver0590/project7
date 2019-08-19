@@ -27,10 +27,10 @@ export default class App extends Component {
   // }
 
   performSearch = (query) => {
-    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${this.state.searchTerm}&per_page=24&format=json&nojsoncallback=1`)
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${this.state.searchText}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
         this.setState({
-          gallery: response.data.galleries.gallery
+          gallery: response.galleries.gallery
         });
       })
       .catch(error => {
@@ -41,13 +41,14 @@ export default class App extends Component {
   render() {
     return (
       <BrowserRouter>
+      <div>
+          <div className="container">
+            <h1>Picture Search</h1>
+          </div>
+        </div>
         <div className="container">
           <Search onSearch={this.performSearch} />
           <Nav isTrue={this.isTrue} onClick={this.performSearch} />
-          {/* {
-            (this.state.loading)
-              ? <p>Loading...</p>
-              : */}
               <Switch>
                 <Route exact path="/" render={props => <Gallery title="Gallery Search" data={this.state.gallery}{...props} />} />
                 <Route exact path="/performSearch/:query" render={props => <Gallery search={this.performSearch} data={this.state.gallery}{...props} />} />
