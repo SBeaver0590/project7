@@ -17,25 +17,30 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
+      searchText: '',
       gallery: []
     };
   }
 
   // Update state with data response from the server, use data from The Flickr API Key, and catch any errors.
-  // componentDidMount() {
-  //   this.performSearch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=statues&per_page=24&format=json&nojsoncallback=1`);
-  // }
+  componentDidMount() {
+    this.performSearch('');
+  }
 
   performSearch = (query) => {
-    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${this.state.searchText}&per_page=24&format=json&nojsoncallback=1`)
-      .then(response => {
-        this.setState({
-          gallery: response.galleries.gallery
+    if (this.state.searchText !== query) {
+      axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
+        .then(response => {
+          console.log(response.data);
+          this.setState({
+            searchText: query,
+            gallery: response.data.photos.photo //access the API data array
+          });
+        })
+        .catch(error => {
+          console.log('Error fetching and parsing data', error);
         });
-      })
-      .catch(error => {
-        console.log('Error fetching and parsing data', error);
-      });
+    }
   }
 
   render() {
@@ -50,11 +55,14 @@ export default class App extends Component {
           <Search onSearch={this.performSearch} />
           <Nav isTrue={this.isTrue} onClick={this.performSearch} />
               <Switch>
-                <Route exact path="/" render={props => <Gallery title="Gallery Search" data={this.state.gallery}{...props} />} />
-                <Route exact path="/performSearch/:query" render={props => <Gallery search={this.performSearch} data={this.state.gallery}{...props} />} />
+                <Route exact path="/" render={props => <Gallery title="Gallery Search" searchText={this.state.searchText} data={this.state.gallery}{...props} />} />
+                <Route exact path="/performSearch/:query" render={props => { 
+                  this.performSearch(props.match.params.query)
+                  return (<Gallery  searchText={props.match.params.query} search={this.performSearch} data={this.state.gallery}{...props} />)
+                }} />
                 <Route component={NotFound} />
               </Switch>
-          {/* } */}
+          {/* <Gallery /> */}
         </div>
       </BrowserRouter>
     );

@@ -6,14 +6,15 @@ export default class Search extends Component {
         searchText: ''
     }
 
-    // onSearchChange = e => { //In this event target(capture) the user's input.
-    //     this.setState(prevState => ({ searchText: e.target.value }));
-    // }
+    onSearchChange = e => { //In this event target(capture) the user's input.
+        const value = e.target.value;
+        this.setState(prevState => ({ searchText: value }));
+    }
 
     handleSubmit = e => {   //Handle the User's input and perform the search
         e.preventDefault();
         // let query = this.query.value;
-        this.props.onSearch(this.query.value);
+        // this.props.onSearch(this.query.value);
         // let path = `/performSearch/${query}`;
         // this.props.history.push(path);
         this.props.onSearch(this.state.searchText, true);
@@ -25,6 +26,7 @@ export default class Search extends Component {
         return (
             <div>
                 <form className="search-form" onSubmit={this.handleSubmit} >
+                    {/* <label className="is-hidden" htmlFor="search">Search</label> */}
                     <input type="searchText" onChange={this.onSearchChange}
                         name="search"
                         ref={(input) => this.query = input}

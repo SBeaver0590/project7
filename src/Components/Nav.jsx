@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom'
 
-export default class Nav extends Component {
+export default class Nav extends Component { //Nav links for provided search terms: Apples, Bananas, Oranges, etc.
     render() {
         return (
                 <nav className="main-nav">
