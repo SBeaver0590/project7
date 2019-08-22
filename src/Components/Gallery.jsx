@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Picture from './Picture';
+import { thisExpression } from '@babel/types';
 
 
 class Gallery extends Component {
@@ -39,6 +40,10 @@ class Gallery extends Component {
         //     }
             
         // ];
+        if(this.props.searchText !== this.props.query) {
+            this.props.history.push(`/performSearch/${this.props.query}`); 
+            this.props.search(this.props.query);
+        }
         
         return ( //Return the new data
             <div className="photo-container">
@@ -48,7 +53,7 @@ class Gallery extends Component {
                 </ul> 
             </div>
         );
-
+        
     }
 }
 

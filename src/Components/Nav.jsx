@@ -12,7 +12,7 @@ export default class Nav extends Component { //Nav links for provided search ter
                         <li><NavLink to='/performSearch/Bananas'>Bananas</NavLink></li>
                         <li><NavLink to='/performSearch/Oranges'>Oranges</NavLink></li>
                         <li><NavLink to='/performSearch/Grapes'>Grapes</NavLink></li>
-                        <li><NavLink to='/performSearch/Pineapples'>Pinapples</NavLink></li>
+                        <li><NavLink to='/performSearch/Pineapples'>Pineapples</NavLink></li>
                     </ul>
                 </nav>
         );
@@ -20,7 +20,7 @@ export default class Nav extends Component { //Nav links for provided search ter
 }
 
 
-//ReactDOM.render(routing, document.getElementById('root'))
+// ReactDOM.render(routing, document.getElementById('root'))
 // Nav.propTypes = {
 
 // };
