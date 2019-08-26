@@ -13,12 +13,12 @@ export default class Search extends Component {
 
     handleSubmit = e => {   //Handle the User's input and perform the search
         e.preventDefault();
-        // let query = this.query.value;
-        // this.props.onSearch(this.query.value);
-        // let path = `/performSearch/${query}`;
+        let query = this.query.value;
+        this.props.onSearch(query);
+        let path = `/performSearch/${query}`;
         e.currentTarget.reset();
-        // this.props.history.push(path);
-        this.props.onSearch(this.state.searchText, true);
+        this.props.history.push(path);
+        // this.props.onSearch(this.state.searchText, true);
         
     }
 

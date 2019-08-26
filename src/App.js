@@ -9,7 +9,7 @@ import apiKey from './Components/config';
 import axios from 'axios'
 import React, { Component } from 'react';
 import NotFound from './Components/NotFound';
-//let test= apiKey;
+// import NoMatchFound from './NoMatchFound';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 export default class App extends Component {
@@ -18,15 +18,22 @@ export default class App extends Component {
     super();
     this.state = {
       searchText: '',
-      gallery: []
+      gallery: [],
+      loading: false
     };
   }
 
-  // Update state with data response from the server, use data from The Flickr API Key, and catch any errors.
   componentDidMount() {
-    // this.performSearch('');
+    this.performSearch('');
   }
 
+  isTrue = (istrue = true) => {
+    this.setState({
+      loading: istrue
+    });
+  }
+  
+  // Update state with data response from the server, use data from The Flickr API Key, and catch any errors.
   performSearch = (query) => {
     if (this.state.searchText !== query) {
       this.setState({
@@ -37,7 +44,8 @@ export default class App extends Component {
           console.log(response.data);
           this.setState({
             // searchText: query,
-            gallery: response.data.photos.photo //access the API data array
+            gallery: response.data.photos.photo, //access the API data array
+            loading: false  
           });
         })
         .catch(error => {
@@ -57,19 +65,34 @@ export default class App extends Component {
           </div>
         </div>
         <div className="container">
-          <Search onSearch={this.performSearch} />
-          <Nav isTrue={this.isTrue} onClick={this.performSearch} />
+        {
+                    (this.state.loading)
+                      ? <p>Loading...</p>
+                      :
+                  
           <Switch>
-            <Route exact path="/" render={ () => <Redirect to="/performSearch/apples" />} />
-            {/* <Route exact path="/" render={props => <Gallery title="Gallery Search" searchText={this.state.searchText} data={this.state.gallery}{...props} />} /> */}
+            <Route exact path="/" render={ () => <Redirect to="/performSearch/" />} />
+            <Route exact path="/performSearch" render={props => { 
+              return (
+                <React.Fragment>
+                  <Search onSearch={this.performSearch}{...props} />
+                  <Nav isTrue={this.isTrue} onClick={this.performSearch} />
+                </React.Fragment>
+              )
+            }} />
             <Route path="/performSearch/:query" render={props => { 
               // this.performSearch(props.match.params.query)
-              return (<Gallery  query={props.match.params.query} searchText={this.state.searchText} search={this.performSearch} data={this.state.gallery}{...props} />)
-            }} />
-              <Route path="/search" render={ () => <Gallery images={this.state.gallery} title={this.state.query} />} />
+              return (
+                <React.Fragment>
+                  <Search onSearch={this.performSearch}{...props} />
+                  <Nav isTrue={this.isTrue} onClick={this.performSearch} />
+                  <Gallery  query={props.match.params.query} searchText={this.state.searchText} search={this.performSearch} data={this.state.gallery}{...props} />
+                </React.Fragment>
+              )
+            }} /> 
             <Route component={NotFound} />
           </Switch>
-          {/* <Gallery /> */}
+        } 
         </div>
       </BrowserRouter>
     );
