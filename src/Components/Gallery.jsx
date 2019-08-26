@@ -10,10 +10,11 @@ class Gallery extends Component {
         
         const results = props.data;
         let NotFound = results.map(currentPicture => <Picture key={currentPicture.id} url={`https://farm${currentPicture.farm}.staticflickr.com/${currentPicture.server}/${currentPicture.id}_${currentPicture.secret}.jpg`}/>);
-        if(results.length === 0 ){
+        if(results.length > 0 ){
             
-        }
+        }else{
         return NotFound;
+        }
     }
     
     render() { //show those pictures on the page.

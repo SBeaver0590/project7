@@ -7,5 +7,6 @@ const NoMatchFound = props => {
             <h2>No match found</h2>
             <p>Sorry, please try your search again</p>
         </div>
-    )
+    );
 }
+ export default NoMatchFound;
