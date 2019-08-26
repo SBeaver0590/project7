@@ -1,3 +1,7 @@
+//Welcome to Simone's Photo Gallery 
+// I am going for exceeds expectations, if it does not meet that standard please kick it back.
+
+
 // Import the search, nav, gallery from the .jsx files
 // Imported components
 import './App.css';
@@ -71,9 +75,9 @@ export default class App extends Component {
                       ? <p>Loading...</p>
                       :
                   
-          <Switch>
+          <Switch> 
             <Route exact path="/" render={ () => <Redirect to="/performSearch/" />} />
-            <Route exact path="/performSearch" render={props => { 
+            <Route exact path="/performSearch" render={props => { //if the page is present show components
               return (
                 <React.Fragment>
                   <Search onSearch={this.performSearch}{...props} />
@@ -81,8 +85,7 @@ export default class App extends Component {
                 </React.Fragment>
               )
             }} />
-            <Route path="/performSearch/:query" render={props => { 
-              // this.performSearch(props.match.params.query)
+            <Route path="/performSearch/:query" render={props => { //If the user searches return images if not found return NoMatchFound.
               return (
                 <React.Fragment>
                   <Search onSearch={this.performSearch}{...props} />
@@ -91,7 +94,7 @@ export default class App extends Component {
                 </React.Fragment>
               )
             }} /> 
-            <Route component={NoMatchFound} />
+            <Route component={NoMatchFound} /> 
           </Switch>
         } 
         </div>

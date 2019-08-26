@@ -1,7 +1,7 @@
 import React from 'react';
 //import PropTypes from 'prop-types';
 
-const NotFound = props => {
+const NotFound = props => { //if no images are found from the search print So sorry, No images found.
     return (
         <li className="not-found">
            <i className="material-icons icon-photo"></i>

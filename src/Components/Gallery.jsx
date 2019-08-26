@@ -13,7 +13,7 @@ class Gallery extends Component {
         let pictures = results.map(currentPicture => <Picture key={currentPicture.id} url={`https://farm${currentPicture.farm}.staticflickr.com/${currentPicture.server}/${currentPicture.id}_${currentPicture.secret}.jpg`}/>);
         if(results.length > 0 ){
         return pictures;
-        }else{ // If you cant 
+        }else{ // If you cant find anything give NOT FOUND message.
          return  <NotFound />
         }
     }
