@@ -8,9 +8,10 @@ import Gallery from './Components/Gallery';
 import apiKey from './Components/config';
 import axios from 'axios'
 import React, { Component } from 'react';
-import NotFound from './Components/NotFound';
+// import NotFound from './Components/NotFound';
 // import NoMatchFound from './NoMatchFound';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import NoMatchFound from './Components/NoMatchFound';
 
 export default class App extends Component {
 
@@ -90,7 +91,7 @@ export default class App extends Component {
                 </React.Fragment>
               )
             }} /> 
-            <Route component={NotFound} />
+            <Route component={NoMatchFound} />
           </Switch>
         } 
         </div>

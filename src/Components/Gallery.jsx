@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Picture from './Picture';
+import NotFound from './NotFound';
 // import NotFound from './NotFound';
 
 
@@ -9,11 +10,11 @@ class Gallery extends Component {
     pictures = props => { //give me images with props(farm, server, id, secret)
         
         const results = props.data;
-        let NotFound = results.map(currentPicture => <Picture key={currentPicture.id} url={`https://farm${currentPicture.farm}.staticflickr.com/${currentPicture.server}/${currentPicture.id}_${currentPicture.secret}.jpg`}/>);
+        let pictures = results.map(currentPicture => <Picture key={currentPicture.id} url={`https://farm${currentPicture.farm}.staticflickr.com/${currentPicture.server}/${currentPicture.id}_${currentPicture.secret}.jpg`}/>);
         if(results.length > 0 ){
-            
-        }else{
-        return NotFound;
+        return pictures;
+        }else{ // If you cant 
+         return  <NotFound />
         }
     }
     
